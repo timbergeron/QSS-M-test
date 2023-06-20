@@ -183,7 +183,7 @@ unsigned int scr_centerprint_flags;
 int paused = 0; // woods #showpaused
 qboolean	countdown; // #clearcrxcountdown
 qboolean	cameras; // woods #crxcamera
-qboolean	qeintermission; // woods #qeintermission
+extern qboolean	qeintermission; // woods #qeintermission
 qboolean draw; // woods #crxcamera #qeintermission
 
 /*
