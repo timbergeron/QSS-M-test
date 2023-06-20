@@ -41,10 +41,3 @@ jobs:
         set -eu
         parallel="$(nproc)"
         exec $MAKE_CMD USE_SDL2=1 CC=$CC AS=$AS RANLIB=$RANLIB AR=$AR STRIP=$STRIP -f ${{ matrix.platform.makefile }} -j"${parallel}" -C Quake
-
-    - name: Upload QSSM
-      uses: actions/upload-artifact@v3
-      with:
-        name: QSSM
-        path: |
-            Quake
