@@ -31,12 +31,26 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Set environment variables
+      run: |
+        echo "TARGET=x86_64-w64-mingw32" >> $GITHUB_ENV
+        echo "PREFIX=/opt/cross_win64" >> $GITHUB_ENV
+        echo "PATH=$PREFIX/bin:$PATH" >> $GITHUB_ENV
+        echo "MAKE_CMD=make" >> $GITHUB_ENV
+        echo "CC=$TARGET-gcc" >> $GITHUB_ENV
+        echo "AS=$TARGET-as" >> $GITHUB_ENV
+        echo "RANLIB=$TARGET-ranlib" >> $GITHUB_ENV
+        echo "AR=$TARGET-ar" >> $GITHUB_ENV
+        echo "WINDRES=$TARGET-windres" >> $GITHUB_ENV
+        echo "STRIP=$TARGET-strip" >> $GITHUB_ENV
+
     - name: Build MinGW
       run: |
         set -eu
         parallel="$(getconf _NPROCESSORS_ONLN)"
-        make -j"${parallel}" -C Quake -f ${{ matrix.platform.makefile }}
-    - name: Upload vkQuake
+        exec $MAKE_CMD USE_SDL2=1 CC=$CC AS=$AS RANLIB=$RANLIB AR=$AR WINDRES=$WINDRES STRIP=$STRIP -f ${{ matrix.platform.makefile }} -j"${parallel}" -C Quake
+
+    - name: Upload QSSM
       uses: actions/upload-artifact@v3
       with:
         name: QSSM archive (${{ matrix.platform.msystem }})
