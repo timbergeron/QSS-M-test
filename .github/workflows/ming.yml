@@ -1,4 +1,4 @@
-name: Windows CI (mingw)
+name: Windows CI (MinGW)
 
 on: [push, pull_request]
 
@@ -43,6 +43,8 @@ jobs:
         echo "AR=$TARGET-ar" >> $GITHUB_ENV
         echo "WINDRES=$TARGET-windres" >> $GITHUB_ENV
         echo "STRIP=$TARGET-strip" >> $GITHUB_ENV
+        export QSS_CFLAGS="-DQSS_REVISION=`git rev-parse HEAD`"
+        export QSS_LDFLAGS="-Wl,--allow-multiple-definition"
 
     - name: Build MinGW
       run: |
