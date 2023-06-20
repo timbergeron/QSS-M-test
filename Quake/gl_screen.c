@@ -183,7 +183,7 @@ unsigned int scr_centerprint_flags;
 int paused = 0; // woods #showpaused
 qboolean	countdown; // #clearcrxcountdown
 qboolean	cameras; // woods #crxcamera
-qboolean	qeintermission; // woods #qeintermission
+extern qboolean	qeintermission; // woods #qeintermission
 qboolean draw; // woods #crxcamera #qeintermission
 
 /*
@@ -209,18 +209,18 @@ void SCR_CenterPrint (const char *str) //update centerprint data
 	
 	if (cl.modtype == 4) // woods #qeintermission
 	{ 
-		if (strstr(str, "Öïôå") || strstr(str, "ÔÄÍ") || (strstr(str, "Íáôãè") && strstr(str, "Óõííáòù"))) // woods #qeintermission (Vote For, TDM Stats, Match Summary)  
+		if (strstr(str, "??") || strstr(str, "??) || (strstr(str, "???) && strstr(str, "????))) // woods #qeintermission (Vote For, TDM Stats, Match Summary)  
 			qeintermission = true;
 		else
 			qeintermission = false;
 	}
 
-	if (strstr(str, "ãïõîôäï÷îº")) // woods #clearcrxcountdown (countdown)
+	if (strstr(str, "?????)) // woods #clearcrxcountdown (countdown)
 		countdown = true;
 	else
 		countdown = false;
 
-	if ((strstr(str, "ĞÁÕÓÅÄ")) || (strstr(str, "PAUSED"))) // #showpaused
+	if ((strstr(str, "???")) || (strstr(str, "PAUSED"))) // #showpaused
 	{
 		pausedprint = true; // woods #qssmhints
 		return;
@@ -230,7 +230,7 @@ void SCR_CenterPrint (const char *str) //update centerprint data
 // woods for center print filter  -> this is #flagstatus
 // ===============================
 
- // begin woods for flagstatus parsing --  â = blue abandoned, ò = red abandoned, r = taken, b = taken
+ // begin woods for flagstatus parsing --  ?= blue abandoned, ?= red abandoned, r = taken, b = taken
 
 	const char* blueflag;
 	char buf[10];
@@ -240,36 +240,36 @@ void SCR_CenterPrint (const char *str) //update centerprint data
 	{ 
 		strncpy(cl.flagstatus, "n", sizeof(cl.flagstatus)); // null flag, reset all flag ... flags :)
 
-		if (!strpbrk(str, "€")) // cdmod MOD print
+		if (!strpbrk(str, "????")) // cdmod MOD print
 		{
 			// RED
 
-			if (strstr(str, "r") && !strstr(str, "bŸ") && !strstr(str, "âŸ")) // red taken
+			if (strstr(str, "r?") && !strstr(str, "b?") && !strstr(str, "?)) // red taken
 				strncpy(cl.flagstatus, "r", sizeof(cl.flagstatus));
 
-			if (strstr(str, "ò") && !strstr(str, "bŸ") && !strstr(str, "âŸ")) // red abandoned
+			if (strstr(str, "?) && !strstr(str, "b?") && !strstr(str, "?)) // red abandoned
 				strncpy(cl.flagstatus, "x", sizeof(cl.flagstatus));
 
 		// BLUE
 
-			if (strstr(str, "bŸ") && !strstr(str, "r") && !strstr(str, "ò")) // blue taken
+			if (strstr(str, "b?") && !strstr(str, "r?") && !strstr(str, "?)) // blue taken
 				strncpy(cl.flagstatus, "b", sizeof(cl.flagstatus));
 
-			if (strstr(str, "âŸ") && !strstr(str, "r") && !strstr(str, "ò")) // blue abandoned
+			if (strstr(str, "?) && !strstr(str, "r?") && !strstr(str, "?)) // blue abandoned
 				strncpy(cl.flagstatus, "y", sizeof(cl.flagstatus));
 
 		// RED & BLUE
 
-			if ((strstr(str, "bŸ")) && (strstr(str, "r"))) //  blue & red taken
+			if ((strstr(str, "b?")) && (strstr(str, "r?"))) //  blue & red taken
 				strncpy(cl.flagstatus, "p", sizeof(cl.flagstatus));
 
-			if ((strstr(str, "âŸ")) && (strstr(str, "ò"))) // blue & red abandoned
+			if ((strstr(str, "?)) && (strstr(str, "?))) // blue & red abandoned
 				strncpy(cl.flagstatus, "z", sizeof(cl.flagstatus));
 
-			if ((strstr(str, "âŸ")) && (strstr(str, "r"))) // blue abandoned, red taken
+			if ((strstr(str, "?)) && (strstr(str, "r?"))) // blue abandoned, red taken
 				strncpy(cl.flagstatus, "j", sizeof(cl.flagstatus));
 
-			if ((strstr(str, "bŸ")) && (strstr(str, "ò"))) // red abandoned, blue taken
+			if ((strstr(str, "b?")) && (strstr(str, "?))) // red abandoned, blue taken
 				strncpy(cl.flagstatus, "k", sizeof(cl.flagstatus));
 		}
 	}
@@ -281,10 +281,10 @@ void SCR_CenterPrint (const char *str) //update centerprint data
 
 	if (!strcmp(str, "Your team captured the flag!\n") ||
 		!strcmp(str, "Your flag was captured!\n") ||
-		!strcmp(str, "Enemy æìáç has been returned to base!") ||
-		!strcmp(str, "Your ÆÌÁÇ has been taken!") ||
-		!strcmp(str, "Your team has the enemy ÆÌÁÇ!") ||
-		!strcmp(str, "Your æìáç has been returned to base!"))
+		!strcmp(str, "Enemy ?? has been returned to base!") ||
+		!strcmp(str, "Your ???has been taken!") ||
+		!strcmp(str, "Your team has the enemy ???") ||
+		!strcmp(str, "Your ?? has been returned to base!"))
 		return;
 
 	if (*str != '/' && cl.intermission)
