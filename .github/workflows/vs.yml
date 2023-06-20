@@ -1,4 +1,4 @@
-name: Windows CI
+name: Windows CI (Visual Studio)
 on: [push, pull_request]
 jobs:
   build:
