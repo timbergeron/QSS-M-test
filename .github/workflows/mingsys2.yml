@@ -27,6 +27,10 @@ jobs:
           ${{ matrix.platform.msys-env }}-gcc
           ${{ matrix.platform.msys-env }}-glslang
 
+    - name: Install zip
+      run: |
+          msys2do 'pacman -S --noconfirm zip'
+
     - uses: actions/checkout@v3
       with:
         submodules: recursive
