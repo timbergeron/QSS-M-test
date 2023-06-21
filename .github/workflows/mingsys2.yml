@@ -29,6 +29,8 @@ jobs:
 
     - name: Install zip
       run: |
+          pacman -Q zlib
+          pacman -Ql zlib
           pacman -S --noconfirm zlib-devel
           /sbin/ldconfig -p| grep libz.so
 
