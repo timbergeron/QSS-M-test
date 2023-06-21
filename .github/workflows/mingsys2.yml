@@ -42,6 +42,7 @@ jobs:
     - name: Set environment variables
       run: |
         echo "LDFLAGS=-lz $LDFLAGS" >> $GITHUB_ENV
+        export LIBRARY_PATH=/usr/bin:$LIBRARY_PATH
         echo "TARGET=x86_64-w64-mingw32" >> $GITHUB_ENV
         echo "PREFIX=/opt/cross_win64" >> $GITHUB_ENV
         echo "PATH=$PREFIX/bin:$PATH" >> $GITHUB_ENV
