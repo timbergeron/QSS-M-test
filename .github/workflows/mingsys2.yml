@@ -1,4 +1,4 @@
-name: Windows CI (MinGW)
+name: Windows CI (MinGW SYS2)
 
 on: [push, pull_request]
 
