@@ -29,7 +29,7 @@ jobs:
 
     - name: Install zip
       run: |
-          pacman -S --noconfirm zip
+          pacman -S zlib-devel
 
     - uses: actions/checkout@v3
       with:
