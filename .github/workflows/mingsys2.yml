@@ -33,6 +33,8 @@ jobs:
           pacman -Ql zlib
           pacman -S --noconfirm zlib-devel
           echo "LDFLAGS=-L/usr/bin -lz $LDFLAGS" >> $GITHUB_ENV
+          pacman -Q zlib
+          pacman -Ql zlib
 
     - uses: actions/checkout@v3
       with:
