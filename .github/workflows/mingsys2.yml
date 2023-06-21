@@ -30,6 +30,7 @@ jobs:
     - name: Install zip
       run: |
           pacman -S --noconfirm zlib-devel
+          /sbin/ldconfig -p| grep libz.so
 
     - uses: actions/checkout@v3
       with:
