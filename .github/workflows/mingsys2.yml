@@ -31,7 +31,7 @@ jobs:
       run: |
           pacman -Q zlib
           pacman -Ql zlib
-          pacman -S --noconfirm zlib-devel
+          pacman -S --noconfirm mingw-w64-x86_64-zlib
           pacman -Q zlib
           pacman -Ql zlib
 
@@ -41,7 +41,7 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "LDFLAGS=-L/usr/bin -l:msys-z.dll $LDFLAGS" >> $GITHUB_ENV
+        echo "LDFLAGS=-lz $LDFLAGS" >> $GITHUB_ENV
         echo "TARGET=x86_64-w64-mingw32" >> $GITHUB_ENV
         echo "PREFIX=/opt/cross_win64" >> $GITHUB_ENV
         echo "PATH=$PREFIX/bin:$PATH" >> $GITHUB_ENV
