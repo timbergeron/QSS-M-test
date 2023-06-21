@@ -21,8 +21,16 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
+        # use apt-spy2 to select closest apt mirror,
+        # which helps avoid connectivity issues in Azure;
+        # see https://github.com/actions/virtual-environments/issues/675
+        sudo gem install apt-spy2
+        sudo apt-spy2 check
+        sudo apt-spy2 fix --commit
+        # after selecting a specific mirror, we need to run 'apt-get update'
+        sudo apt-get update
         sudo apt-get install -y mingw-w64
-        sudo apt-get install -y libsdl2-dev libmad0-dev libopus-dev libvorbis-dev zlib1g-dev libvorbisfile3 libopusfile-dev sudo apt-get install zip
+        sudo apt-get install -y libsdl2-dev libmad0-dev libopus-dev libvorbis-dev zlib1g-dev libvorbisfile3 libopusfile-dev zip
 
     - name: Set environment variables
       run: |
