@@ -32,7 +32,7 @@ jobs:
           pacman -Q zlib
           pacman -Ql zlib
           pacman -S --noconfirm zlib-devel
-          /sbin/ldconfig -p| grep libz.so
+          echo "LDFLAGS=-L/usr/bin -lz $LDFLAGS" >> $GITHUB_ENV
 
     - uses: actions/checkout@v3
       with:
@@ -40,7 +40,6 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "LDFLAGS=-lz $LDFLAGS" >> $GITHUB_ENV
         echo "TARGET=x86_64-w64-mingw32" >> $GITHUB_ENV
         echo "PREFIX=/opt/cross_win64" >> $GITHUB_ENV
         echo "PATH=$PREFIX/bin:$PATH" >> $GITHUB_ENV
