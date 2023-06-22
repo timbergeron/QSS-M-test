@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: macOS Build
+    - name: macOS
       if: runner.os == 'macOS'
       run: |
           cd MacOSX
