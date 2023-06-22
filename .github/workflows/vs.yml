@@ -2,7 +2,7 @@ name: Windows CI (MSVS)
 on: [push, pull_request]
 jobs:
   build:
-    name: Windows / ${{ matrix.platform }}
+    name: ${{ matrix.platform }}
     runs-on: windows-2022
     strategy:
       fail-fast: false
