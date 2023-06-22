@@ -22,7 +22,7 @@ jobs:
         )
         & $msbuild Windows\VisualStudio\quakespasm.sln $options
         if (-not $?) { throw "Build failed" }
-    - name: Upload vkQuake
+    - name: Upload QSSM
       uses: actions/upload-artifact@v3
       with:
         name: QSSM ${{ matrix.platform }})
