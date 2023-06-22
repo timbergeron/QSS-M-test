@@ -25,7 +25,7 @@ jobs:
     - name: Upload vkQuake
       uses: actions/upload-artifact@v3
       with:
-        name: QSSM archive (${{ matrix.configuration }}, ${{ matrix.platform }})
+        name: QSSM ${{ matrix.platform }})
         path: |
             Windows\VisualStudio\Build-quakespasm-sdl2\**\*.exe
             Windows\VisualStudio\Build-quakespasm-sdl2\**\*.dll
