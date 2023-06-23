@@ -4,49 +4,29 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: ${{ matrix.platform.arch }}
-    runs-on: ${{ matrix.platform.os }}
-
-    defaults:
-      run:
-        shell: ${{ matrix.platform.shell }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-        - { name: Windows (mingw32),  os: windows-latest, shell: 'msys2 {0}', msystem: mingw32, msys-env: mingw-w64-i686, arch: w32 }
-        - { name: Windows (mingw64),  os: windows-latest, shell: 'msys2 {0}', msystem: mingw64, msys-env: mingw-w64-x86_64, arch: w64 }
+    name: w64
+    runs-on: windows-latest
 
     steps:
-    - name: Set up MSYS2
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup MSYS2
       uses: msys2/setup-msys2@v2
       with:
-        msystem: ${{ matrix.platform.msystem }}
-        install: base-devel
-          ${{ matrix.platform.msys-env }}-gcc
-          ${{ matrix.platform.msys-env }}-glslang
+        release: false
+        install: >
+          base-devel
+          mingw-w64-x86_64-toolchain
+          mingw-w64-x86_64-SDL2
+          mingw-w64-x86_64-opus
+          mingw-w64-x86_64-opusfile
+          mingw-w64-x86_64-libvorbis
+          mingw-w64-x86_64-libmad
+          mingw-w64-x86_64-zlib
+          mingw-w64-x86_64-libzip
+          cmake
+          zip
 
-    - name: Install zip?
-      run: |
-          pacman -Q zlib
-          pacman -Ql zlib
-          pacman -S --noconfirm mingw-w64-x86_64-zlib
-          pacman -Q zlib
-          pacman -Ql zlib
-          pacman -S --noconfirm git
-          cp /mingw64/bin/windres.exe /mingw64/bin/x86_64-w64-mingw32-windres.exe
-          cp /mingw64/bin/strip.exe /mingw64/bin/x86_64-w64-mingw32-strip.exe
-
-    - uses: actions/checkout@v3
-
-    - name: Build
-      run: |
-        bash build-${{ matrix.platform.arch }}.sh
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: QSS-M ${{ matrix.platform }}
-        path: |
-          Quake/QSS-M-w*.zip
+    - name: Build QSS-M
+      run: bash build-w64.sh
