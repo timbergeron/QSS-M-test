@@ -1,0 +1,28 @@
+name: macOS (Xcode)
+
+on:
+  push
+
+jobs:
+  build:
+    name: arm64-intel
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: macOS
+      if: runner.os == 'macOS'
+      run: |
+          cd MacOSX
+          ./build-macos.sh
+
+    - name: Upload macOS artifact
+      uses: actions/upload-artifact@v3
+      if: runner.os == 'macOS'
+      with:
+        name: QSS-M
+        path: |
+          MacOSX/build/Release/*.zip
