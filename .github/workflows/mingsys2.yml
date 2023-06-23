@@ -39,8 +39,7 @@ jobs:
 
     - name: Build
       run: |
-        chmod 755 build-${{ matrix.platform }}.sh
-        sudo ./build-${{ matrix.platform }}.sh
+        bashbuild-${{ matrix.platform }}.sh
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
