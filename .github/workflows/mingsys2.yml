@@ -24,6 +24,7 @@ jobs:
           mingw-w64-x86_64-libmad
           mingw-w64-x86_64-zlib
           mingw-w64-x86_64-libzip
+          zlib-devel
           cmake
           zip
 
