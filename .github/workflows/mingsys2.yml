@@ -27,6 +27,10 @@ jobs:
           mingw-w64-x86_64-libzip
           cmake
           zip
+      env:
+        PATH: ${{ github.workspace }}\msys64\mingw64\bin;${{ github.workspace }}\msys64\usr\bin;${{ env.PATH }}
 
     - name: Build QSS-M
       run: bash build-w64.sh
+      env:
+       PATH: ${{ github.workspace }}\msys64\mingw64\bin;${{ github.workspace }}\msys64\usr\bin;${{ env.PATH }}
