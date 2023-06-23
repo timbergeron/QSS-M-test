@@ -31,6 +31,9 @@ jobs:
     - name: find path
       run: |
         pwd
+        
+    - name: Print MSYS2 path
+      run: echo $MSYSTEM_PREFIX
   
     - name: Copy zlib
       run: cp "C:/mingw64/include/zlib.h" "${{ github.workspace }}/Windows/codecs/include/zlib.h"
