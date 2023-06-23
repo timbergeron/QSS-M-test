@@ -4,12 +4,13 @@ on: [push, pull_request]
 
 jobs:
   build:
+    name: w64
     runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+      
     - name: Setup MSYS2
       uses: msys2/setup-msys2@v2
       with:
@@ -26,6 +27,9 @@ jobs:
           mingw-w64-x86_64-libzip
           cmake
           zip
+          
+    - name: Show Path
+      run: bash pwd
 
     - name: Build QSS-M
       run: bash build-w64.sh
