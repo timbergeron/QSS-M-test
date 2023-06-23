@@ -28,6 +28,7 @@ jobs:
           zip
 
     - name: Fix prefixing issues
+      shell: msys2 {0}
       run: |
         cp /mingw64/bin/windres.exe /mingw64/bin/x86_64-w64-mingw32-windres.exe
         cp /mingw64/bin/strip.exe /mingw64/bin/x86_64-w64-mingw32-strip.exe
