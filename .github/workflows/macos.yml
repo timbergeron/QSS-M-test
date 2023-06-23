@@ -1,11 +1,11 @@
-name: macOS
+name: macOS (Xcode)
 
 on:
   push
 
 jobs:
   build:
-    name: arm64/intel
+    name: arm64-intel
     runs-on: macos-latest
     strategy:
       fail-fast: false
