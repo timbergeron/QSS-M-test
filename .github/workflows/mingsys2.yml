@@ -39,7 +39,7 @@ jobs:
 
     - name: Build
       run: |
-        bashbuild-${{ matrix.platform }}.sh
+        bash build-${{ matrix.platform.arch }}.sh
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
