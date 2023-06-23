@@ -34,15 +34,6 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "TARGET=x86_64-linux-gnu" >> $GITHUB_ENV
-        echo "PREFIX=/opt/cross_linux64" >> $GITHUB_ENV
-        echo "PATH=$PREFIX/bin:$PATH" >> $GITHUB_ENV
-        echo "MAKE_CMD=make" >> $GITHUB_ENV
-        echo "CC=$TARGET-gcc" >> $GITHUB_ENV
-        echo "AS=$TARGET-as" >> $GITHUB_ENV
-        echo "RANLIB=$TARGET-ranlib" >> $GITHUB_ENV
-        echo "AR=$TARGET-ar" >> $GITHUB_ENV
-        echo "STRIP=$TARGET-strip" >> $GITHUB_ENV
 
     - name: Build Linux
       run: |
