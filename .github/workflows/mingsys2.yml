@@ -27,11 +27,7 @@ jobs:
           mingw-w64-x86_64-libzip
           cmake
           zip
-
-    - name: Add MSYS2 to PATH
-      run: |
-       echo "C:\msys64\mingw64\bin" >> $GITHUB_PATH
-       echo "C:\msys64\usr\bin" >> $GITHUB_PATH
+          cp "C:/mingw64/include/zlib.h" "${{ github.workspace }}/Windows/codecs/include/zlib.h"
       
     - name: Build QSS-M
       run: bash build-w64.sh
