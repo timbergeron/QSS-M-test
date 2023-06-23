@@ -27,7 +27,10 @@ jobs:
           mingw-w64-x86_64-libzip
           cmake
           zip
-          cp "C:/mingw64/include/zlib.h" "${{ github.workspace }}/Windows/codecs/include/zlib.h"
+          
+          
+    - name: Copy zlib
+      run: cp "C:/mingw64/include/zlib.h" "${{ github.workspace }}/Windows/codecs/include/zlib.h"
       
     - name: Build QSS-M
       run: bash build-w64.sh
