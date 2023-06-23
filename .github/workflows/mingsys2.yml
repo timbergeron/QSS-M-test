@@ -27,7 +27,7 @@ jobs:
           ${{ matrix.platform.msys-env }}-gcc
           ${{ matrix.platform.msys-env }}-glslang
 
-    - name: Install zip
+    - name: Install zip?
       run: |
           pacman -Q zlib
           pacman -Ql zlib
