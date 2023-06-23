@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup MSYS2
       uses: msys2/setup-msys2@v2
@@ -24,15 +24,8 @@ jobs:
           mingw-w64-x86_64-libmad
           mingw-w64-x86_64-zlib
           mingw-w64-x86_64-libzip
-          zlib-devel
           cmake
           zip
-
-    - name: Fix prefixing issues
-      shell: msys2 {0}
-      run: |
-        cp /mingw64/bin/windres.exe /mingw64/bin/x86_64-w64-mingw32-windres.exe
-        cp /mingw64/bin/strip.exe /mingw64/bin/x86_64-w64-mingw32-strip.exe
 
     - name: Build QSS-M
       run: bash build-w64.sh
