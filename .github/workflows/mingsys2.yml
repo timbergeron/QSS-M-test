@@ -28,10 +28,9 @@ jobs:
           cmake
           zip
           
-    - name: find zlib
+    - name: find path
       run: |
-       cd /
-       find . -name "zlib.h"
+        pwd
   
     - name: Copy zlib
       run: cp "C:/mingw64/include/zlib.h" "${{ github.workspace }}/Windows/codecs/include/zlib.h"
