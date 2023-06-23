@@ -7,25 +7,30 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up MSYS2
-        uses: msys2/setup-msys2@v2
-        with:
-          release: true
-          install: >-
-            base-devel mingw-w64-x86_64-toolchain mingw-w64-x86_64-SDL2 
-            mingw-w64-x86_64-opus mingw-w64-x86_64-opusfile mingw-w64-x86_64-libvorbis 
-            mingw-w64-x86_64-libmad mingw-w64-x86_64-zlib mingw-w64-x86_64-libzip
-            cmake zip
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        release: false
+        install: >
+          base-devel
+          mingw-w64-x86_64-toolchain
+          mingw-w64-x86_64-SDL2
+          mingw-w64-x86_64-opus
+          mingw-w64-x86_64-opusfile
+          mingw-w64-x86_64-libvorbis
+          mingw-w64-x86_64-libmad
+          mingw-w64-x86_64-zlib
+          mingw-w64-x86_64-libzip
+          cmake
+          zip
 
-      - name: Prepare the environment
-        run: |
-          cp /mingw64/bin/windres.exe /mingw64/bin/x86_64-w64-mingw32-windres.exe
-          cp /mingw64/bin/strip.exe /mingw64/bin/x86_64-w64-mingw32-strip.exe
-        shell: msys2 {0}
+    - name: Fix prefixing issues
+      run: |
+        cp /mingw64/bin/windres.exe /mingw64/bin/x86_64-w64-mingw32-windres.exe
+        cp /mingw64/bin/strip.exe /mingw64/bin/x86_64-w64-mingw32-strip.exe
 
-      - name: Build QSS-M
-        run: bash build-w64.sh
-        shell: msys2 {0}
+    - name: Build QSS-M
+      run: bash build-w64.sh
