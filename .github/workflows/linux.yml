@@ -34,7 +34,7 @@ jobs:
 
     - name: Build Linux
       run: |
-        ./build-linux.sh
+        sudo ./build-linux.sh
         
     - name: Upload linux artifact
       uses: actions/upload-artifact@v3
