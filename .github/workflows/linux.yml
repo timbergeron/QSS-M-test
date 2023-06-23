@@ -6,13 +6,7 @@ jobs:
   build-linux:
     name: ${{ matrix.platform.name }}
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-        - { name: Linux (x86_64),  shell: bash, makefile: Makefile }
-
+    
     steps:
     - uses: actions/checkout@v3
       with:
@@ -40,6 +34,6 @@ jobs:
     - name: Upload linux artifact
       uses: actions/upload-artifact@v3
       with:
-        name: linux64
+        name: QSS-M
         path: |
-          Quake/quakespasm
+          Quake/QSS-M-l64.zip
